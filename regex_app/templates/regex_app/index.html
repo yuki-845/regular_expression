@@ -1,24 +1,34 @@
+<!-- regex_app/templates/index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formsetのテスト</title>
+    <title>Form</title>
 </head>
 <body>
-  <form action="" method="post">
-    {% csrf_token %}
-    
-        <label>Name<input type="text" name="name" id="name" value="{{name}}"></label>
-        {% if name == "" %}
-        Ageは1~3桁の半角数字のみで入力してください
-        {% endif %}
-        <label>Age</label><input type="text" name="age" id="age">
-        <label>Zip Code</label><input type="text" name="zip_code" id="zip_code">
-        <label>Tel</label><input type="text" name="tel" id="tel">
-    
-    <input type="submit" value="送信">
-</form>
+    <form method="post" action="{% url 'regex_app:confirm' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ name }}" required>
+        <br>
+        <label for="age">Age:</label>
+        <input type="text" name="age" value="{{ age }}" required>
+        <br>
+        <label for="zip-code">Zip Code:</label>
+        <input type="text" name="zip-code" value="{{ zip_code }}" required>
+        <br>
+        <label for="tel">Tel:</label>
+        <input type="text" name="tel" value="{{ tel }}" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if error_messages %}
+        <ul>
+            {% for error in error_messages %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>
