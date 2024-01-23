@@ -7,21 +7,15 @@
     <title>Formsetのテスト</title>
 </head>
 <body>
-    <form method='POST'>
-        {% csrf_token %}
-        {% for per_form in form %}
-        
-          {{ per_form }}
-          <br>
-        {% endfor %}
-        {{ form.management_form }}
-        <button name="btn_submit" type="submit">
-          送信する
-        </button>
-        <button name="btn_add" type="submit">
-          追加する
-        </button>
-    </form>
-    <h3>{{ message }}</h3>
+  <form action="{% url 'regex_app: confirm' %}" method="post">
+    {% csrf_token %}
+    <div class="field">
+        <label>Name</label><input type="text" name="name" id="name">
+        <label>Age</label><input type="text" name="age" id="age">
+        <label>Zip Code</label><input type="text" name="zip_code" id="zip_code">
+        <label>Tel</label><input type="text" name="tel" id="tel">
+    </div>
+    <input type="submit" value="送信">
+</form>
 </body>
 </html>
