@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-
-<html lang="ja">
-
+<html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>bbs</title>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formsetのテスト</title>
 </head>
-
 <body>
-
-  <h1>Hello Django</h1>
-
+    <form method='POST'>
+        {% csrf_token %}
+        {% for per_form in form %}
+        
+          {{ per_form }}
+          <br>
+        {% endfor %}
+        {{ form.management_form }}
+        <button name="btn_submit" type="submit">
+          送信する
+        </button>
+        <button name="btn_add" type="submit">
+          追加する
+        </button>
+    </form>
+    <h3>{{ message }}</h3>
 </body>
-
 </html>
